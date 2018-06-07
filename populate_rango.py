@@ -92,7 +92,7 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat,cat_data["views"],cat_data["likes"])
         for p in cat_data["pages"]:
-            add_page(c, p["title"], p["url"])#, p["views"])
+            add_page(c, p["title"], p["url"], p["views"])
 
 ##        quiz = add_quiz(c,cat_data["quiz"]["out_of"],cat_data["quiz"]["attempts"])
 ##        print("- Quiz - " + cat)
