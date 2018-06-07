@@ -1,0 +1,13 @@
+<ul>
+	{% if cat_list %}
+		{% for cat in cat_list %}
+			{% if cat == act_cat %}
+				<li><strong><a href="{% url 'rango:show_category' cat.slug %}">{{ cat.name }}</a></strong></li>
+			{% else %}
+				<li><a href="{% url 'rango:show_category' cat.slug %}">{{ cat.name }}</a></li>
+			{% endif %}
+		{% endfor %}
+	{% else %}
+		<li><strong>There are no categories</strong></li>
+	{% endif %}
+</ul>
