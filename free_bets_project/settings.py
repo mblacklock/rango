@@ -15,7 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'rango', 'templates')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+RANGO_TEMPLATE_DIR = os.path.join(BASE_DIR, 'rango', 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'rango', 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3RD PARTY APPS
+    'registration',
     # MY APPS
     'rango',
 ]
@@ -59,7 +62,7 @@ ROOT_URLCONF = 'free_bets_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [TEMPLATE_DIR, RANGO_TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,7 +115,14 @@ PASSWORD_HASHERS = [
 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 ]
 
-LOGIN_URL = '/rango/login/'
+# Registration Variables
+
+LOGIN_URL = '/accounts/login/'
+
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/rango/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
