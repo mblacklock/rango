@@ -2,6 +2,18 @@ from django import forms
 from django.contrib.auth.models import User
 from rango.models import Page, Category, UserProfile
 
+#------- OVERIDE EMAIL AS USERNAME -----------
+from registration.forms import RegistrationForm
+
+class MyRegForm(RegistrationForm):
+    username = forms.CharField(max_length=150, required=False, widget=forms.HiddenInput())
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        self.cleaned_data['username'] = email
+        return email
+#------------------------------
+
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=Category.max_length,
             help_text="Please enter the category name.")

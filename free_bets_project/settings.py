@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3RD PARTY APPS
     'registration',
+    'bootstrap3',
     # MY APPS
     'rango',
 ]
@@ -123,6 +124,9 @@ REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/rango/'
+
+# Captures email as username override
+REGISTRATION_FORM = 'rango.forms.MyRegForm'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

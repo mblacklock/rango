@@ -1,13 +1,13 @@
-<ul>
+<ul class="nav flex-column">
 	{% if cat_list %}
 		{% for cat in cat_list %}
 			{% if cat == act_cat %}
-				<li><strong><a href="{% url 'rango:show_category' cat.slug %}">{{ cat.name }}</a></strong></li>
+				<li class="nav-item"><strong><a class="nav-link" href="{% url 'rango:show_category' cat.slug %}">{{ cat.name }}</a></strong></li>
 			{% else %}
-				<li><a href="{% url 'rango:show_category' cat.slug %}">{{ cat.name }}</a></li>
+				<li class="nav-item"><a class="nav-link" href="{% url 'rango:show_category' cat.slug %}">{{ cat.name }}</a></li>
 			{% endif %}
 		{% endfor %}
 	{% else %}
-		<li><strong>There are no categories</strong></li>
+		<li class="nav-item"><strong>There are no categories</strong></li>
 	{% endif %}
 </ul>

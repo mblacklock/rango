@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 
-{% extends 'rango/base.html' %}
+{% extends 'base_bootstrap_new.html' %}
 {% load staticfiles %}
 
 {% block body_block %}
-	<h1>Rango says...</h1> 
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-3">Rango says...</h1>
+			{% if user.is_authenticated %}
+				howdy {{ user.username }}!
+			{% else %}
+				hey there partner!
+			{% endif %}
+			</br>
+			Visits: {{ visits }}
+			</br>
+			Last Visit: {{ last_visit }}
+		</div>
+    </div>
+
+	<div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+			<div class="col-md-6">
+				{% if categories %}
+					<h2>Most Liked Categories</h1> 
+					<ul class="list-group list-group-flush">
+					{% for category in categories %}
+						<li class="list-group-item"><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></li>
+					{% endfor %}
+					</ul>
+				{% else %}
+					<strong>There are no categories</strong>
+				{% endif %}
+			</div>
+			<div class="col-md-6">
+				{% if pages %}
+					<h2>Most Viewed Pages</h1> 
+					<ul class="list-group list-group-flush">
+						{% for page in pages %}
+							<li class="list-group-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<strong>There are no pages</strong>
+				{% endif %}
+			</div>
+        </div>
+        <hr>
+      </div> <!-- /container -->
+	
 	<div>
-		{% if user.is_authenticated %}
-			howdy {{ user.username }}!
-		{% else %}
-			hey there partner!
-		{% endif %}
-		</br>
-		Visits: {{ visits }}
-		</br>
-		Last Visit: {{ last_visit }}
-	</div> 
-	<div>
-		{% if categories %}
-		<h2>Most Liked Categories</h1> 
-			<ul>
-				{% for category in categories %}
-					<li><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<strong>There are no categories</strong>
-		{% endif %}
-	</div>
-	<div>
-		{% if pages %}
-		<h2>Most Viewed Pages</h1> 
-			<ul>
-				{% for page in pages %}
-					<li><a href="{{ page.url }}">{{ page.title }}</a></li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<strong>There are no pages</strong>
-		{% endif %}
+		
 	</div>
 {% endblock %}
