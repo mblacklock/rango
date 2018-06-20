@@ -37,7 +37,14 @@ class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    website = models.URLField(blank=True)
+    slug = models.SlugField(unique=False)
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.user)
+        super(UserProfile, self).save(*args, **kwargs)
+    
+    max_length = 128
+    name = models.CharField(max_length = max_length, blank=True)
+    website = models.CharField(max_length = max_length, blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
     def __str__(self):

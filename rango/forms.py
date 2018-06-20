@@ -57,14 +57,13 @@ class PageForm(forms.ModelForm):
 
             return cleaned_data
 
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password')
-
 class UserProfileForm(forms.ModelForm):
+    name = forms.CharField(max_length=UserProfile.max_length, required=False)
+    website = forms.CharField(max_length=UserProfile.max_length, required=False)
+    picture = forms.ImageField(required=False)
+
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
+    
     class Meta:
         model = UserProfile
-        fields = ('website', 'picture')
+        fields = ('name', 'website', 'picture')

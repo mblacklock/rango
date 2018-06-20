@@ -40,7 +40,7 @@
 					<h2>Most Viewed Pages</h1> 
 					<ul class="list-group list-group-flush">
 						{% for page in pages %}
-							<li class="list-group-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
+							<li class="list-group-item"><a href="{% url 'rango:goto' %}?page_id={{ page.id }}">{{ page.title }}</a></li>
 						{% endfor %}
 					</ul>
 				{% else %}

@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.urls import include, path
 
+
 from rango import views
 
 app_name = 'rango'
@@ -26,4 +27,7 @@ urlpatterns = [
     path('add_category/',views.add_category, name='add_category'),
     path('category/<slug:category_name_slug>/add_page/',views.add_page,name='add_page'),
     path('restricted/', views.restricted, name='restricted'),
+    path('goto/', views.track_url, name='goto'),
+    path('register_profile/', views.register_profile, name='register_profile'),
+    path('profile/<slug:username>/', views.profile, name='profile'),
 ]

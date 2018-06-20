@@ -1,0 +1,42 @@
+{% extends 'base_bootstrap_new.html' %}
+{% load staticfiles %}
+
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block title_block %}
+	{{selecteduser.username}} Profile
+{% endblock %}
+
+{% block body_block %}
+	</br></br></br>
+	<div class="jumbotron">
+		<h1 class="h3 mb-3 font-weight-normal">{{selecteduser.username}} Profile</h1>
+	</div>
+	<div class="container py-5">
+		<img src="{{ MEDIA_URL }}{{userprofile.picture }}"
+			width="300"
+			height="300"
+			alt="{{selected.username}}" />
+		</br>
+		<div>
+			{% if selecteduser.username == user.username %}
+				<form method="post" action="." enctype="multipart/form-data">
+					{% csrf_token %}
+					
+					{% bootstrap_form form %}
+					{% buttons %}
+						<button class="btn btn-outline-primary" type="submit" name="submit">Update</button>
+					{% endbuttons %}
+				</form>
+			{% else %}
+				<p><strong>Name: </strong>{{userprofile.name}}</p>
+				<p><strong>Website: </strong> <a href="{{userprofile.website}}">
+					{{userprofile.website}}</a></p>
+			{% endif %}
+		</div>
+		<div id="edit_profile"></div>
+	</div>
+{% endblock %}

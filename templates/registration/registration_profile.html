@@ -1,0 +1,26 @@
+{% extends 'base_bootstrap_new.html' %}
+{% load staticfiles %}
+
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block title_block %}
+	Registration - Profile
+{% endblock %}
+
+{% block body_block %}
+	</br></br></br>
+	<div class="container">
+		<h1 class="form-signin-heading">Registration - Profile</h1>
+		<form method="post" action="." enctype="multipart/form-data">
+			{% csrf_token %}
+			{% bootstrap_form form %}
+			{% buttons %}
+				<button class="btn btn-lg btn-primary type="submit" name="submit">Register</button>
+			{% endbuttons %}
+			<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+		</form>
+	</div>
+{% endblock %}
