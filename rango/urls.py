@@ -31,4 +31,5 @@ urlpatterns = [
     path('register_profile/', views.register_profile, name='register_profile'),
     path('profile/<slug:userid>/', views.profile, name='profile'),
     path('users/', views.user_list, name='user_list'),
+    path('like/', views.like_category, name='like_category'),
 ]
