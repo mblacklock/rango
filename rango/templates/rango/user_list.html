@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+{% extends 'base_bootstrap_new.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	User List
+{% endblock %}
+
+{% block body_block %}
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-3">Rango says...</h1>
+			Here is a list of registered users!
+		</div>
+    </div>
+
+	<div class="container">
+	{% if user_list %}
+        <ul class="list-group list-group-flush">
+			{% for userprofile in user_list %}
+				<li class="list-group-item">
+					{% if userprofile.picture %}
+						<img width="64" height="64" src="{{ MEDIA_URL }}{{userprofile.picture}}" />
+					{% else %}
+						<img width="64" height="64" src="https://picsum.photos/64?random" />
+					{% endif %}
+						<a href="{% url 'rango:profile' userprofile.user.id %}">{{ userprofile.user.username }}</a></li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		There are no registered users
+	{% endif %}
+    </div> <!-- /container -->
+	
+	<div>
+		
+	</div>
+{% endblock %}

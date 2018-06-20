@@ -141,7 +141,7 @@ def register_profile(request):
             user_profile = form.save(commit=False)
             user_profile.user = request.user
             user_profile.save()
-            return redirect('index')
+            return redirect('rango:index')
         else:
             print(form.errors)
 
@@ -150,12 +150,11 @@ def register_profile(request):
     return render(request, 'registration/registration_profile.html', context_dict)
 
 @login_required
-def profile(request, username):
-    username_slug = slugify(username)
+def profile(request, userid):
     try:
-        userprofile = UserProfile.objects.get(slug=username_slug)
-        user = User.objects.get(username=userprofile.user)
-    except UserProfile.DoesNotExist:
+        user = User.objects.get(id=userid)
+        userprofile = UserProfile.objects.get(user=user)
+    except User.DoesNotExist:
         return redirect('rango:index')
     
     form = UserProfileForm(
@@ -164,11 +163,17 @@ def profile(request, username):
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
         if form.is_valid():
             form.save(commit=True)
-            return redirect('rango:profile', userprofile.slug)
+            return redirect('rango:profile', user.id)
         else:
             print(form.errors)
     return render(request, 'registration/profile.html',
             {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+
+@login_required
+def user_list(request):
+    user_list = UserProfile.objects.all()
+    print(user_list)
+    return render(request, 'rango/user_list.html', {'user_list': user_list})
 
 
 ###########  HELPER FUNCTIONS  ###############

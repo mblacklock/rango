@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from rango.models import Page, Category, UserProfile
 
-#------- OVERIDE EMAIL AS USERNAME -----------
+#------- OVERIDE EMAIL AS USERNAME && Write user.first_name as slug -----------
 from registration.forms import RegistrationForm
 
 class MyRegForm(RegistrationForm):
@@ -62,7 +62,7 @@ class UserProfileForm(forms.ModelForm):
     website = forms.CharField(max_length=UserProfile.max_length, required=False)
     picture = forms.ImageField(required=False)
 
-    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
+    slug = forms.SlugField(widget=forms.HiddenInput(), required=False)
     
     class Meta:
         model = UserProfile
