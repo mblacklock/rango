@@ -59,7 +59,13 @@ def populate():
 
     cats = {"Python": {"pages": python_pages, "views": 128, "likes": 64},
             "Django": {"pages": django_pages, "views": 64, "likes": 32},
-            "Other Frameworks": {"pages": other_pages, "views": 32, "likes": 16}
+            "Other Frameworks": {"pages": other_pages, "views": 32, "likes": 16},
+            "Pascal": {"pages": pascal_pages, "views": 128, "likes": 64},
+            "Perl": {"pages": perl_pages, "views": 128, "likes": 64},
+            "PHP": {"pages": php_pages, "views": 128, "likes": 64},
+            "Prolog": {"pages": prolog_pages, "views": 128, "likes": 64},
+            "PostScript": {"pages": postscript_pages, "views": 128, "likes": 64},
+            "Programming": {"pages": programming_pages, "views": 128, "likes": 64}
             }
 
 ##    cats = {"Python": {"pages": python_pages, "views": 128, "likes": 64,

@@ -8,3 +8,13 @@ $('#likes').click(function(){
 			$('#likes').hide();
 	});
 });
+
+$('#suggestion').keyup(function(){
+	console.log("suggestion");
+	var query;
+	query = $(this).val();
+	console.log(query);
+	$.get('/rango/suggest/', {suggestion: query}, function(data){
+		$('#cats').html(data);
+	});
+});

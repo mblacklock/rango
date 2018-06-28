@@ -32,4 +32,5 @@ urlpatterns = [
     path('profile/<slug:userid>/', views.profile, name='profile'),
     path('users/', views.user_list, name='user_list'),
     path('like/', views.like_category, name='like_category'),
+    path('suggest/', views.suggest_category, name='suggest_category'),
 ]

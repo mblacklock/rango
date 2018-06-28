@@ -191,6 +191,16 @@ def like_category(request):
                 cat.save()
     return HttpResponse(likes)
 
+def suggest_category(request):
+    cat_list = Category.objects.all()
+    starts_with = ''
+
+    if request.method == 'GET':
+        starts_with = request.GET['suggestion']
+    cat_list = get_category_list(8, starts_with)
+    
+    return render(request, 'rango/cat_list.html', {'cat_list': cat_list })
+
 ###########  HELPER FUNCTIONS  ###############
 
 def visitor_cookie_handler(request):
@@ -220,5 +230,14 @@ def get_server_side_cookie(request, cookie, default_val=None):
         val = default_val
     return val
 
+def get_category_list(max_results=0, starts_with=''):
+    cat_list = Category.objects.all()
+    if starts_with:
+        cat_list = Category.objects.filter(name__istartswith=starts_with)
+
+    if max_results > 0:
+        if len(cat_list) > max_results:
+            cat_list = cat_list[:max_results]
+    return cat_list
 
           
